@@ -1,0 +1,8 @@
+{
+  "name": "domino-fox-release",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "marked": "^14"
+  }
+}

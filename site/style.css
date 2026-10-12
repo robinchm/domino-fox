@@ -1,0 +1,195 @@
+/* domino-fox release site — minimal, system.
+   Base chrome (body/main/links/dark mode) + the markdown element layer
+   emitted by marked (see site/build.mjs). */
+
+:root {
+  color-scheme: light dark;
+  --fg: #1a1a1a;
+  --bg: #ffffff;
+  --muted: #666666;
+  --border: #d9d9d9;
+  --border-soft: #e6e6e6;
+  --code-bg: #f0f0f0;
+  --link: #0645ad;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #e8e8e8;
+    --bg: #16181d;
+    --muted: #9aa0a6;
+    --border: #3a3f47;
+    --border-soft: #262a31;
+    --code-bg: #1e2126;
+    --link: #8ab4f8;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0 1rem 2.5rem;
+  /* System stack first; CJK glyphs fall through to the Chinese-friendly faces. */
+  font-family:
+    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC",
+    sans-serif;
+  line-height: 1.6;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+main {
+  width: 100%;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding-top: 2.5rem;
+}
+
+h1 {
+  font-size: 1.6rem;
+  line-height: 1.25;
+  margin: 0 0 1rem;
+}
+
+/* Nav links (page footer nav — no ICP footer). */
+ul.links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--border-soft);
+  padding-top: 1rem;
+  color: var(--muted);
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ---- markdown (marked output) ---- */
+
+h2 {
+  font-size: 1.35rem;
+  line-height: 1.3;
+  margin: 2rem 0 0.6rem;
+}
+
+h3 {
+  font-size: 1.15rem;
+  line-height: 1.3;
+  margin: 1.6rem 0 0.5rem;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 1.4rem 0 0.4rem;
+}
+
+p {
+  margin: 0.6rem 0;
+}
+
+ul,
+ol {
+  margin: 0.6rem 0;
+  padding-left: 1.4rem;
+}
+
+li {
+  margin: 0.25rem 0;
+}
+
+li > ul,
+li > ol {
+  margin: 0.25rem 0;
+}
+
+blockquote {
+  margin: 0.8rem 0;
+  padding: 0.1rem 1rem;
+  border-left: 3px solid var(--border);
+  color: var(--muted);
+}
+
+code,
+pre {
+  /* Monospace stack first; CJK in code falls through to the mono CJK face. */
+  font-family:
+    ui-monospace, "Cascadia Code", Consolas, "Noto Sans Mono CJK SC",
+    monospace;
+  font-size: 0.9em;
+}
+
+code {
+  background: var(--code-bg);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+
+pre {
+  background: var(--code-bg);
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  font-size: 1em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+
+th,
+td {
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  border-bottom: 2px solid var(--border);
+}
+
+td {
+  border-bottom: 1px solid var(--border-soft);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+strong {
+  font-weight: 600;
+}
