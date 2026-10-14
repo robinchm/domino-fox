@@ -1,51 +1,23 @@
-<!-- Source of truth for https://robinchm.com/domino-fox/.
-     Edit this file, then build with: node site/build.mjs -->
+<!-- Edit this file, then build with: node site/build.mjs -->
 
 # domino-fox
 
-domino-fox is a Firefox extension that puts an LLM agent in the browser
-sidebar. You chat; it reads and manipulates the page in the current tab —
-extracting what you need and acting where you point it.
+domino-fox是一个在火狐浏览器中用大模型访问网页、编写脚本的插件。
+可以大幅自定义浏览体验。
 
-You bring your own API keys: requests go straight from your browser to the
-provider you configured. Everything stays local — no telemetry, no accounts,
-no server in the middle.
+警告：该插件有较大的权限，同时需要你自己提供大模型API。
 
-## What it can do
+## domino-fox能做什么
 
-- **Read and act on the page.** The agent works through a toolbox that can
-  inspect the DOM, extract structured content, and perform actions in the
-  current tab.
-- **Drop to JavaScript when tools aren't enough.** `evaluate_js` runs code
-  in the page for the odd cases the built-in tools don't cover.
-- **Userscripts and workflows.** Beyond one-off chats, the LLM can author
-  reusable userscripts and multi-tab workflow programs — written by you, by
-  the agent, or by both together.
-- **Scripts as tools.** Registered workflows become agent tools
-  (script-as-tool), so your own automations are callable mid-conversation
-  like any built-in capability.
-- **Bookmarks, history, downloads.** Integration with browser data is
-  available; each class of data sits behind an explicit opt-in gate.
-- **Sync across devices.** Scripts and settings follow you via the sync
-  server — small, and self-hostable.
-- **A marketplace for scripts.** Share and install userscripts and
-  workflows through the market server, also self-hostable.
+- **由大模型直接读取、变更页面** 从简单的总结页面内容到操作dom都可以完成。
+- **运行javascript** 操作dom也解决不了的问题大模型可以在页面上执行javascript。
+- **Userscripts和Workflows.** 对重复性的内容或是永久性变更某个站点的页面，大模型可以自己编写和管理userscript（类似油猴脚本）和workflw（比油猴更进一步，可以操作多个页面来完成任务）。脚本中也可以访问大模型。
+- **将脚本变为大模型可用的工具** 让大模型不再需要进行标准化、重复性的工作
+- **操作你的书签、历史记录和下载** 需要单独打开对应的权限。
 
-## Install
+## 安装
 
-1. Download the signed extension:
-   [domino-fox {{LATEST_VERSION}}]({{LATEST_LINK}}).
-2. Open the `.xpi` in Firefox — drag it onto `about:addons`, or use
-   File → Open File. Firefox verifies the Mozilla signature before
-   installing.
-3. Open the sidebar (`Ctrl+B`, or ☰ → Sidebar), then add your API key in
-   the settings panel.
-
-Older releases are listed on the [downloads page](download/).
-
-## Self-hosting
-
-The extension's sync and market clients default to the public endpoints,
-`https://robinchm.com/domino-fox/sync` and
-`https://robinchm.com/domino-fox/market`. Both services are small and can
-be self-hosted — point the extension at your own instance in its settings.
+1. 下载xpi文件: [domino-fox {{LATEST_VERSION}}]({{LATEST_LINK}})
+2. 安装到火狐：打开`about:addons`页面讲xpi文件拖入
+3. 从工具栏打开插件的边栏，在设置中填写大模型API
+4. 在边栏的聊天窗开始使用

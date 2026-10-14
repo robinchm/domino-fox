@@ -1,0 +1,16 @@
+{
+  "versions": [
+    {
+      "version": "1.1.0",
+      "date": "2026-09-15",
+      "filename": "domino-fox-1.1.0.xpi",
+      "notes": "Script model v2, sync, market, script-as-tool, bookmarks/history/downloads tools, workflow runtime, script storage."
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-09-12",
+      "filename": "domino-fox-1.0.0.xpi",
+      "notes": "Initial release."
+    }
+  ]
+}
