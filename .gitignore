@@ -1,3 +1,5 @@
-download/index.html
+.env
 node_modules/
-dist/
+site/index.html
+download/*.xpi
+download/index.html

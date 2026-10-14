@@ -1,0 +1,41 @@
+# Single orchestration for the domino-fox backend pair.
+#
+#   ADMIN_PASSWORD=… docker compose up -d
+#
+# Build the images first (from their repos, in whatever order):
+#   (cd ../domino-fox-sync   && docker build -t domino-fox-sync:0.2.0 .)
+#   (cd ../domino-fox-market && docker build -t domino-fox-market:0.2.0 .)
+#
+# SHARED DATABASE (the deployment shape): one SQLite file on a named volume,
+# two processes, WAL + busy_timeout keep them honest (server-core discipline).
+# accounts tables migrate from sync; market tables migrate into the same file.
+
+services:
+  sync:
+    image: domino-fox-sync:0.2.0
+    restart: unless-stopped
+    environment:
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?set in .env or the environment}
+    volumes:
+      - dominofox-data:/data
+    # Caddy strips /domino-fox/sync and proxies here (cloud). Local access:
+    # expose the ports you need — the container listens on 3690/3691.
+    # ports:
+    #   - "3690:3690"
+    #   - "3691:3691"
+
+  market:
+    image: domino-fox-market:0.2.0
+    restart: unless-stopped
+    environment:
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?set in .env or the environment}
+      # The market shares the sync database (one file, both table families).
+      DB_FILE: /data/domino-fox.db
+    volumes:
+      - dominofox-data:/data
+    # ports:
+    #   - "3693:3693"
+    #   - "3694:3694"
+
+volumes:
+  dominofox-data:
