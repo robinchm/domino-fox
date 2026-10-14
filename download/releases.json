@@ -1,6 +1,12 @@
 {
   "versions": [
     {
+      "version": "1.2.0",
+      "date": "2026-10-12",
+      "filename": "domino-fox-1.2.0.xpi",
+      "notes": "Market + sync backend, bookmark/history/download tools with optional permissions, script-as-tool, workflow runtime controls, script storage (KV), backup v2, conversation compaction."
+    },
+    {
       "version": "1.1.0",
       "date": "2026-09-15",
       "filename": "domino-fox-1.1.0.xpi",
