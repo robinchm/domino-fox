@@ -23,7 +23,7 @@ SHELL := /bin/bash
 export
 
 DEPLOY_HOST := $(DEPLOY_HOST)
-DEPLOY_PATH ?= /var/www/domino-fox
+DEPLOY_PATH ?= /root/domino-fox
 
 VERSION := $(shell grep -m1 '"version"' ../domino-fox/package.json | sed -E 's/.*"version": "([^"]+)".*/\1/')
 XPI := ../domino-fox/dist/domino-fox-$(VERSION).xpi
@@ -42,7 +42,7 @@ site:
 ## artifacts, and the update feed at the root. Idempotent; trailing slashes
 ## matter to rsync (directory CONTENTS, not the dirs themselves).
 deploy: env site
-	rsync -avz --delete site/index.html site/style.css site/assets/ $(DEPLOY_HOST):$(DEPLOY_PATH)/
+	rsync -avz site/index.html site/style.css site/assets $(DEPLOY_HOST):$(DEPLOY_PATH)/
 	rsync -avz download/ $(DEPLOY_HOST):$(DEPLOY_PATH)/download/
 	rsync -avz updates.json $(DEPLOY_HOST):$(DEPLOY_PATH)/updates.json
 	@echo "deployed → https://robinchm.com/domino-fox/"
