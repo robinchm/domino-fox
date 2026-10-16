@@ -12,30 +12,31 @@
 
 services:
   sync:
-    image: domino-fox-sync:0.2.0
+    image: forgejo.home.internal/robinchm/domino-fox-sync:0.2.0
+    container_name: domino-fox-sync
     restart: unless-stopped
     environment:
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:?set in .env or the environment}
     volumes:
-      - dominofox-data:/data
-    # Caddy strips /domino-fox/sync and proxies here (cloud). Local access:
-    # expose the ports you need — the container listens on 3690/3691.
-    # ports:
-    #   - "3690:3690"
-    #   - "3691:3691"
+      - domino-fox-data:/data
+    ports:
+      - "3690:3690"
+      - "3691:3691"
 
   market:
-    image: domino-fox-market:0.2.0
+    image: forgejo.home.internal/robinchm/domino-fox-market:0.2.0
+    container_name: domino-fox-market
     restart: unless-stopped
     environment:
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:?set in .env or the environment}
       # The market shares the sync database (one file, both table families).
       DB_FILE: /data/domino-fox.db
     volumes:
-      - dominofox-data:/data
-    # ports:
-    #   - "3693:3693"
-    #   - "3694:3694"
+      - domino-fox-data:/data
+    ports:
+      - "3693:3693"
+      - "3694:3694"
 
 volumes:
-  dominofox-data:
+  domino-fox-data:
+    name: domino-fox-data
